@@ -18,7 +18,7 @@ const ChartArea = (props) => {
     case 'Geospatial':
       return <GeoSpatial />;
     case 'Raw':
-      return <Raw />;
+      return <Raw dataByYear={props.dataByYear} />;
   }
 };
 

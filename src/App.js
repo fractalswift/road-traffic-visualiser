@@ -47,7 +47,11 @@ class App extends Component {
     return (
       <div className='container'>
         <Navbar route={this.state.route} setRoute={this.setRoute} />
-        <ChartArea route={this.state.route} dataByYearArray={dataByYearArray} />
+        <ChartArea
+          route={this.state.route}
+          dataByYearArray={dataByYearArray}
+          dataByYear={dataByYear}
+        />
       </div>
     );
   }

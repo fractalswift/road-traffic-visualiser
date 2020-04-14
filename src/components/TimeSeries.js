@@ -129,7 +129,7 @@ class TimeSeries extends Component {
       this.dataByYearArray
     );
 
-    this.updateChartData('Updated title', newDataSet);
+    this.updateChartData('Traffic type over time', newDataSet);
   };
 
   // Set defaults in here
@@ -143,7 +143,7 @@ class TimeSeries extends Component {
       this.dataByYearArray
     );
 
-    this.updateChartData('New title', newDataSet);
+    this.updateChartData('Please select vehicle types', newDataSet);
   }
 
   componentDidUpdate() {
