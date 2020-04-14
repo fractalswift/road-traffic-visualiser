@@ -1,7 +1,11 @@
 import React from 'react';
 
 const GeoSpatial = () => {
-  return <div>GEOSPATIAL PAGE</div>;
+  return (
+    <div className='chartarea'>
+      <div className='linechart'>Geospatial page</div>
+    </div>
+  );
 };
 
 export default GeoSpatial;
