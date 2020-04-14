@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
+body {
+  padding-top: 5px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  width: 98vw;
+  display: grid;
+  margin: auto;
+  grid-template-columns: 1fr;
+  justify-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chartarea {
+  width: 98%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5fr 13fr 1fr;
+  justify-content: center;
+  justify-items: center;
+  margin: auto;
+  margin-top: 5px;
+  border-radius: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.controlbox {
+  width: 98%;
+  display: grid;
+  grid-template-rows: 19fr 1fr;
+  margin: auto;
+
+  border: 2px #8c99d7 solid;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.chartbox {
+  width: 98%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin: auto;
+
+  margin-top: 5px;
+  border-radius: 5px;
+}
+.data-selectors {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.ds-checkbox {
+  width: 100%;
+}
+
+.ds-search {
+  width: 100%;
+}
+
+.vehicle-checkboxes {
+  grid-row: 1/3;
+  padding-left: 20px;
+}
+
+.calculation-selectors {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+
+  height: 4vh;
+}
+
+.linechart {
+  width: 98%;
+  height: 75%;
+  border-radius: 5px;
+  border: 2px #8c99d7 solid;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 50%;
+}
+
+.gridcontainer {
+  width: 100%;
+  margin-top: 20px;
+  justify-self: center;
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-items: center;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.yeargrid {
+  width: 98%;
+  border: 2px #8c99d7 solid;
+  border-radius: 5px;
 }
