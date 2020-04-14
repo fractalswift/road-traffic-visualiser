@@ -1,9 +1,10 @@
 import React from 'react';
+import Map from './Map';
 
 const GeoSpatial = () => {
   return (
-    <div className='chartarea'>
-      <div className='linechart'>Geospatial page</div>
+    <div className='mapcontainer'>
+      <Map />
     </div>
   );
 };
