@@ -50,21 +50,28 @@ class TimeSeriesViz extends Component {
       },
     ],
     vehicleSelection: ['all_motor_vehicles'],
+    filtersList: ['Minor'],
   };
 
   updateVehicleSelection = (vehicles) => {
     this.setState({ vehicleSelection: vehicles });
-    this.getData(vehicles);
+    this.getData(vehicles, this.state.filtersList);
+  };
+
+  updateFiltersList = (filters) => {
+    this.setState({ filtersList: filters });
+    this.getData(this.state.vehicleSelection, filters);
   };
 
   // get all the data
   // TODO add ability to pass filters to backend
-  getData = (vehiclesList) => {
+  getData = (vehiclesList, filtersList) => {
     fetch('http://localhost:3001/timeseries', {
       method: 'post',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
         vehicles: vehiclesList,
+        filtersList: filtersList,
       }),
     })
       .then((response) => response.json())
@@ -84,6 +91,8 @@ class TimeSeriesViz extends Component {
         <ControlBox
           updateVehicleSelection={this.updateVehicleSelection}
           vehicleSelection={this.state.vehicleSelection}
+          updateFiltersList={this.updateFiltersList}
+          filtersList={this.state.filtersList}
         />
         <LineChart
           title={this.state.title}

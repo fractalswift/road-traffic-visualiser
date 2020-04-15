@@ -35,10 +35,20 @@ app.use(cors());
 // TODO add filter options
 app.post('/timeseries', (req, res) => {
   const vehiclesList = req.body.vehicles;
+  const filtersList = req.body.filtersList;
   const datasets = [];
   const roadDataArray = Object.values(roadData);
 
-  // color table for codingg the chart
+  // select only the data front end has requested:
+  const filteredData = [];
+  roadDataArray.forEach((yearColumn) => {
+    let filteredColumn = yearColumn.filter((item) => {
+      return Object.values(item).some((value) => filtersList.includes(value));
+    });
+    filteredData.push(filteredColumn);
+  });
+
+  // color table for coding the chart
   const colors = {
     two_wheeled_motor_vehicles: 'orange',
     cars_and_taxis: 'yellow',
@@ -56,7 +66,7 @@ app.post('/timeseries', (req, res) => {
 
   vehiclesList.forEach((vehicle) => {
     const totals = [];
-    roadDataArray.forEach((yearColumn) => {
+    filteredData.forEach((yearColumn) => {
       const total = yearColumn.reduce((acc, current) => {
         return acc + current[vehicle];
       }, 0);
