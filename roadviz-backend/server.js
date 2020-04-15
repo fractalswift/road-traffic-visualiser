@@ -57,10 +57,11 @@ app.post('/timeseries', (req, res) => {
     });
 
     // If search, filter again for the search
+    // Could use return item.road_name.includes(roadName) for search suggestions
 
     if (roadName.length > 0) {
       filteredColumn = filteredColumn.filter((item) => {
-        return item.road_name.includes(roadName);
+        return item.road_name === roadName;
       });
     }
 

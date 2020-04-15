@@ -14,7 +14,7 @@ This app runs on express/react but I used Python to get and clean the data, the 
 
 // TODO
 
-// Timeseries: - add fucntionality to searchboxes and total/average selector
+// Timeseries - add functionality to total/average selector - searchbox works, but it would be cool if it made suggestions as you typed
 
 // Year Breakdown: - consider switch to different chart type - changes in data from year to year aren't that big or obvious
 
