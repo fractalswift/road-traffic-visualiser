@@ -1,6 +1,7 @@
 /// GeoSpatial.js
 import React from 'react';
 import DeckGL from '@deck.gl/react';
+import { Grid, Menu, Segment } from 'semantic-ui-react';
 
 import { H3HexagonLayer } from '@deck.gl/geo-layers';
 import { StaticMap } from 'react-map-gl';

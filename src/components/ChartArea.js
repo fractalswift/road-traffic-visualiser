@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TimeSeries from './TimeSeries';
+import TimeSeriesViz from './TimeSeriesViz';
 import YearBreakdown from './YearBreakdown';
 import GeoSpatial from './GeoSpatial';
 import Raw from './Raw';
@@ -12,7 +12,7 @@ const ChartArea = (props) => {
 
   switch (route) {
     case 'Time Series':
-      return <TimeSeries dataByYearArray={props.dataByYearArray} />;
+      return <TimeSeriesViz dataByYearArray={props.dataByYearArray} />;
     case 'Year Breakdown':
       return <YearBreakdown dataByYearArray={props.dataByYearArray} />;
     case 'Geospatial':

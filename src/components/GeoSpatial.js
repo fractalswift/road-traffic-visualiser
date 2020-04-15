@@ -1,10 +1,10 @@
 import React from 'react';
-import Map from './Map';
+import MapViz from './MapViz';
 
 const GeoSpatial = () => {
   return (
     <div className='mapcontainer'>
-      <Map />
+      <MapViz />
     </div>
   );
 };
