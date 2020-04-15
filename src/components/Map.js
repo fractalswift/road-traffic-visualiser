@@ -22,25 +22,8 @@ const initialViewState = {
   bearing: 0,
 };
 
-/**
- * Data format:
- * [
- *   {
- *     hex: '88283082b9fffff',
- *     count: 96
- *   },
- *   ...
- * ]
- */
-
-// Data to be used by the Hexagon layer
-// const data = [
-//   {
-//     COORDINATES: [50.7184, 3.5339],
-//   },
-// ];
 const data = roadData['2000'].map((row) => {
-  return { hex: row.h3, count: row.pedal_cycles };
+  return { hex: row.h3, count: row.cars_and_taxis };
 });
 
 class Map extends React.Component {

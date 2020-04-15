@@ -22,18 +22,66 @@ class YearBreakdown extends Component {
     datasets: [
       {
         data: [300, 50, 100],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        backgroundColor: [
+          'orange',
+          'yellow',
+          'green',
+          'red',
+          'powderblue',
+          'deepskyblue',
+          'cornflowerblue',
+          'blue',
+          'darkblue',
+          'mediumslateblue',
+          'violet',
+          'indigo',
+        ],
+        hoverBackgroundColor: [
+          'orange',
+          'yellow',
+          'green',
+          'red',
+          'powderblue',
+          'deepskyblue',
+          'cornflowerblue',
+          'blue',
+          'darkblue',
+          'mediumslateblue',
+          'violet',
+          'indigo',
+        ],
       },
     ],
   };
 
   // get an array of 19 arrays of vehicle totals for their year
+  getData = (year) => {
+    fetch('http://localhost:3001/year', {
+      method: 'post',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        year: year,
+      }),
+    })
+      .then((response) => response.json())
+      .then((yearData) => {
+        let datasetsUpdate = this.state.datasets;
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+        datasetsUpdate[0].data = yearData;
+
+        this.setState({ datasets: datasetsUpdate });
+      });
+  };
+
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name });
+    this.getData(name);
+  };
 
   // Set defaults in here
-  componentDidMount() {}
+  componentDidMount() {
+    this.getData('2000');
+  }
 
   render() {
     const { activeItem } = this.state;
@@ -140,7 +188,7 @@ class YearBreakdown extends Component {
             <Grid.Column stretched width={12}>
               <Segment>
                 <div style={{ width: '100%' }}>
-                  <h2>Traffic types</h2>
+                  <h2>Traffic proportions by year</h2>
                   <Doughnut data={this.state} />
                 </div>
               </Segment>

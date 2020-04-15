@@ -54,9 +54,19 @@ class TimeSeries extends Component {
 
   dataByYearArray = this.props.dataByYearArray;
 
-  returnFilteredData = (filters = [[]], vehicles = [], yearDataArray) => {
+  returnFilteredData = (filters = [], vehicles = [], yearDataArray) => {
     // TODO Apply the filters and searches
     let filteredData = yearDataArray;
+
+    let filteredData2 = yearDataArray.map((yearColumn) => {
+      const filteredYearColumn = yearColumn.filter((datapoint) => {
+        return Object.values(datapoint).some((value) =>
+          filters.includes(value)
+        );
+      });
+
+      return filteredYearColumn;
+    });
 
     // Apply the 'show by vehicle' and push to datasets array
     // This could also set the chart title (not the dataset label)
@@ -135,15 +145,25 @@ class TimeSeries extends Component {
   // Set defaults in here
   componentDidMount() {
     let newDataSet = this.returnFilteredData(
-      [
-        ['road_name', 'M5'],
-        ['road_type', 'Minor'],
-      ],
+      ['Major', 'Minor'],
       this.state.vehicleSelection,
       this.dataByYearArray
     );
 
     this.updateChartData('Please select vehicle types', newDataSet);
+
+    // Possible call to backend here:
+    fetch('http://localhost:3001/filter', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        filters: ['dogs', 'cats'],
+      }),
+    })
+      .then((response) => response.json())
+      .then((filters) => {
+        console.log('filters: ', filters);
+      });
   }
 
   componentDidUpdate() {
