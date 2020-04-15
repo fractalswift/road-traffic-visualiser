@@ -16,7 +16,7 @@ This app runs on express/react but I used Python to get and clean the data, the 
 
 // Timeseries: - only the vehicle filter works for timeseries so far. Add more functionality - add functionality to total/average selector
 
-// Year Breakdown: - switch to different chart type - changes are too small to be easily visible
+// Year Breakdown: - consider switch to different chart type - changes in data from year to year aren't that big or obvious
 
 // Geospatial: - normalise data so it is easier to compare without zooming out
 
