@@ -95,9 +95,19 @@ class TimeSeriesViz extends Component {
     );
   };
 
+  filterRoad = (roadName) => {
+    this.getData(
+      this.state.vehicleSelection,
+      this.state.roadTypes,
+      this.state.roadCats,
+      this.state.directions,
+      roadName
+    );
+  };
+
   // get all the data
   // TODO add ability to pass filters to backend
-  getData = (vehiclesList, roadTypes, roadCats, directions) => {
+  getData = (vehiclesList, roadTypes, roadCats, directions, roadName = '') => {
     fetch('http://localhost:3001/timeseries', {
       method: 'post',
       headers: { 'Content-type': 'application/json' },
@@ -106,6 +116,7 @@ class TimeSeriesViz extends Component {
         roadTypes,
         roadCats,
         directions,
+        roadName,
       }),
     })
       .then((response) => response.json())
@@ -136,6 +147,7 @@ class TimeSeriesViz extends Component {
           roadCatsList={this.state.roadCatsList}
           updateDirectionList={this.updateDirectionList}
           directions={this.state.directions}
+          filterRoad={this.filterRoad}
         />
         <LineChart
           title={this.state.title}

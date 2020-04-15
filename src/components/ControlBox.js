@@ -10,6 +10,7 @@ const ControlBox = ({
   roadTypesList,
   roadCatsList,
   directions,
+  filterRoad,
 }) => {
   return (
     <div className='controlbox'>
@@ -22,6 +23,7 @@ const ControlBox = ({
         roadTypesList={roadTypesList}
         roadCatsList={roadCatsList}
         directions={directions}
+        filterRoad={filterRoad}
       />
     </div>
   );

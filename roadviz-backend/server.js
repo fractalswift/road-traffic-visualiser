@@ -55,6 +55,15 @@ app.post('/timeseries', (req, res) => {
         Object.values(item).some((value) => directions.includes(value))
       );
     });
+
+    // If search, filter again for the search
+
+    if (roadName.length > 0) {
+      filteredColumn = filteredColumn.filter((item) => {
+        return item.road_name.includes(roadName);
+      });
+    }
+
     filteredData.push(filteredColumn);
   });
 

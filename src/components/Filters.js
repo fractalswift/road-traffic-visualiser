@@ -297,15 +297,10 @@ class Filters extends Component {
           </div>
           <div className='data-search'>
             <h3>Filter by road name: </h3>
-            <Input placeholder='Search...' />
-          </div>
-          <div className='data-search'>
-            <h3>Filter by start junction road name:</h3>
-            <Input placeholder='Search...' />
-          </div>
-          <div className='data-search'>
-            <h3>Filter by end junction road name:</h3>
-            <Input placeholder='Search...' />
+            <Input
+              placeholder='Search...'
+              onChange={(e) => this.props.filterRoad(e.target.value)}
+            />
           </div>
         </div>
         <CalculationSelector />
