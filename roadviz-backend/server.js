@@ -35,7 +35,13 @@ app.use(cors());
 // TODO add filter options
 app.post('/timeseries', (req, res) => {
   const vehiclesList = req.body.vehicles;
-  const filtersList = req.body.filtersList;
+  const roadTypes = req.body.roadTypes;
+  const roadCats = req.body.roadCats;
+  const directions = req.body.directions;
+  const roadName = req.body.roadName;
+  const startName = req.body.startName;
+  const endName = req.body.endName;
+
   const datasets = [];
   const roadDataArray = Object.values(roadData);
 
@@ -43,7 +49,11 @@ app.post('/timeseries', (req, res) => {
   const filteredData = [];
   roadDataArray.forEach((yearColumn) => {
     let filteredColumn = yearColumn.filter((item) => {
-      return Object.values(item).some((value) => filtersList.includes(value));
+      return (
+        Object.values(item).some((value) => roadTypes.includes(value)) &&
+        Object.values(item).some((value) => roadCats.includes(value)) &&
+        Object.values(item).some((value) => directions.includes(value))
+      );
     });
     filteredData.push(filteredColumn);
   });

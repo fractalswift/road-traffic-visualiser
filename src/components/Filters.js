@@ -18,9 +18,11 @@ class Filters extends Component {
       hgvs_5_articulated_axle: false,
       hgvs_6_articulated_axle: false,
       all_hgvs: false,
-      all_motor_vehicles: false,
+      all_motor_vehicles: true,
     },
-    filters: ['Major'],
+    roadTypes: ['Major', 'Minor'],
+    roadCats: ['TM', 'MB', 'MCU', 'PA', 'TA'],
+    directions: ['N', 'S', 'W', 'E', 'C'],
   };
 
   updateVehicleState = (vehicle) => {
@@ -39,19 +41,49 @@ class Filters extends Component {
     this.props.updateVehicleSelection(vehiclesList);
   };
 
-  updateFilterState = (filter) => {
+  updateRoadTypesState = (roadType) => {
     let stateCopy = this.state;
 
-    stateCopy.filters.includes(filter) === false
-      ? stateCopy.filters.push(filter)
-      : (stateCopy.filters = stateCopy.filters.filter(
-          (item) => item !== filter
+    stateCopy.roadTypes.includes(roadType) === false
+      ? stateCopy.roadTypes.push(roadType)
+      : (stateCopy.roadTypes = stateCopy.roadTypes.filter(
+          (item) => item !== roadType
         ));
 
     this.setState(stateCopy);
 
-    // Lift the vehicles back up to through ControlBox --> TimeSeries component
-    this.props.updateFiltersList(stateCopy.filters);
+    // Lift the roadtypes back up to through ControlBox --> TimeSeries component
+    this.props.updateRoadTypesList(stateCopy.roadTypes);
+  };
+
+  updateRoadCatState = (roadCat) => {
+    let stateCopy = this.state;
+
+    stateCopy.roadCats.includes(roadCat) === false
+      ? stateCopy.roadCats.push(roadCat)
+      : (stateCopy.roadCats = stateCopy.roadCats.filter(
+          (item) => item !== roadCat
+        ));
+
+    this.setState(stateCopy);
+
+    // Lift the roadCats back up to through ControlBox --> TimeSeries component
+    this.props.updateRoadCatsList(stateCopy.roadCats);
+  };
+
+  updateDirectionState = (direction) => {
+    let stateCopy = this.state;
+
+    stateCopy.directions.includes(direction) === false
+      ? stateCopy.directions.push(direction)
+      : (stateCopy.directions = stateCopy.directions.filter(
+          (item) => item !== direction
+        ));
+
+    this.setState(stateCopy);
+
+    // Lift the directions back up to through ControlBox --> TimeSeries component
+    this.props.updateDirectionList(stateCopy.directions);
   };
 
   render() {
@@ -66,7 +98,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('two_wheeled_motor_vehicles');
               }}
-              checked={this.state.two_wheeled_motor_vehicles}
+              checked={this.state.vehicles.two_wheeled_motor_vehicles}
             />
             <Checkbox
               className='ds-checkbox'
@@ -74,7 +106,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('pedal_cycles');
               }}
-              checked={this.state.pedal_cycles}
+              checked={this.state.vehicles.pedal_cycles}
             />
 
             <Checkbox
@@ -83,7 +115,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('buses_and_coaches');
               }}
-              checked={this.state.buses_and_coaches}
+              checked={this.state.vehicles.buses_and_coaches}
             />
             <Checkbox
               label='cars_and_taxis'
@@ -91,14 +123,14 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('cars_and_taxis');
               }}
-              checked={this.state.cars_and_taxis}
+              checked={this.state.vehicles.cars_and_taxis}
             />
             <Checkbox
               label='lgvs'
               onChange={() => {
                 this.updateVehicleState('lgvs');
               }}
-              checked={this.state.lgvs}
+              checked={this.state.vehicles.lgvs}
             />
             <Checkbox
               label='hgvs_2_rigid_axle'
@@ -106,7 +138,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('hgvs_2_rigid_axle');
               }}
-              checked={this.state.hgvs_2_rigid_axle}
+              checked={this.state.vehicles.hgvs_2_rigid_axle}
             />
             <Checkbox
               label='hgvs_3_rigid_axle'
@@ -114,7 +146,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('hgvs_3_rigid_axle');
               }}
-              checked={this.state.hgvs_3_rigid_axle}
+              checked={this.state.vehicles.hgvs_3_rigid_axle}
             />
             <Checkbox
               label='hgvs_4_or_more_rigid_axle'
@@ -122,7 +154,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('hgvs_4_or_more_rigid_axle');
               }}
-              checked={this.state.hgvs_4_or_more_rigid_axle}
+              checked={this.state.vehicles.hgvs_4_or_more_rigid_axle}
             />
             <Checkbox
               label='hgvs_5_articulated_axle'
@@ -130,7 +162,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('hgvs_5_articulated_axle');
               }}
-              checked={this.state.hgvs_5_articulated_axle}
+              checked={this.state.vehicles.hgvs_5_articulated_axle}
             />
             <Checkbox
               label='hgvs_6_articulated_axle'
@@ -138,7 +170,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('hgvs_6_articulated_axle');
               }}
-              checked={this.state.hgvs_6_articulated_axle}
+              checked={this.state.vehicles.hgvs_6_articulated_axle}
             />
             <Checkbox
               label='all_hgvs'
@@ -146,7 +178,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('all_hgvs');
               }}
-              checked={this.state.all_hgvs}
+              checked={this.state.vehicles.all_hgvs}
             />
             <Checkbox
               label='all_motor_vehicles'
@@ -154,7 +186,7 @@ class Filters extends Component {
               onChange={() => {
                 this.updateVehicleState('all_motor_vehicles');
               }}
-              checked={this.state.all_motor_vehicles}
+              checked={this.state.vehicles.all_motor_vehicles}
             />
           </div>
           <div className='data-checkboxes'>
@@ -163,17 +195,17 @@ class Filters extends Component {
               className='ds-checkbox'
               label='Major'
               onChange={() => {
-                this.updateFilterState('Major');
+                this.updateRoadTypesState('Major');
               }}
-              checked={this.state.filters.includes('Major')}
+              checked={this.state.roadTypes.includes('Major')}
             />
             <Checkbox
               className='ds-checkbox'
               label='Minor'
               onChange={() => {
-                this.updateFilterState('Minor');
+                this.updateRoadTypesState('Minor');
               }}
-              checked={this.state.filters.includes('Minor')}
+              checked={this.state.roadTypes.includes('Minor')}
             />
           </div>
           <div className='data-checkboxes'>
@@ -182,41 +214,41 @@ class Filters extends Component {
               className='ds-checkbox'
               label='MB'
               onChange={() => {
-                this.updateFilterState('MB');
+                this.updateRoadCatState('MB');
               }}
-              checked={this.state.filters.includes('MB')}
+              checked={this.state.roadCats.includes('MB')}
             />
             <Checkbox
               className='ds-checkbox'
               label='MCU'
               onChange={() => {
-                this.updateFilterState('MCU');
+                this.updateRoadCatState('MCU');
               }}
-              checked={this.state.filters.includes('MCU')}
+              checked={this.state.roadCats.includes('MCU')}
             />
             <Checkbox
               className='ds-checkbox'
               label='PA'
               onChange={() => {
-                this.updateFilterState('PA');
+                this.updateRoadCatState('PA');
               }}
-              checked={this.state.filters.includes('PA')}
+              checked={this.state.roadCats.includes('PA')}
             />
             <Checkbox
               className='ds-checkbox'
               label='TA'
               onChange={() => {
-                this.updateFilterState('TA');
+                this.updateRoadCatState('TA');
               }}
-              checked={this.state.filters.includes('TA')}
+              checked={this.state.roadCats.includes('TA')}
             />
             <Checkbox
               className='ds-checkbox'
               label='TM'
               onChange={() => {
-                this.updateFilterState('TM');
+                this.updateRoadCatState('TM');
               }}
-              checked={this.state.filters.includes('TM')}
+              checked={this.state.roadCats.includes('TM')}
             />
           </div>
           <div className='data-checkboxes'>
@@ -225,42 +257,42 @@ class Filters extends Component {
               className='ds-checkbox'
               label='North'
               onChange={() => {
-                this.updateFilterState('N');
+                this.updateDirectionState('N');
               }}
-              checked={this.state.filters.includes('N')}
+              checked={this.state.directions.includes('N')}
             />
             <Checkbox
               className='ds-checkbox'
               label='South'
               onChange={() => {
-                this.updateFilterState('S');
+                this.updateDirectionState('S');
               }}
-              checked={this.state.filters.includes('S')}
+              checked={this.state.directions.includes('S')}
             />
             <Checkbox
               className='ds-checkbox'
               label='East'
               onChange={() => {
-                this.updateFilterState('E');
+                this.updateDirectionState('E');
               }}
-              checked={this.state.filters.includes('E')}
+              checked={this.state.directions.includes('E')}
             />
             <Checkbox
               className='ds-checkbox'
               label='West'
               onChange={() => {
-                this.updateFilterState('W');
+                this.updateDirectionState('W');
               }}
-              checked={this.state.filters.includes('W')}
+              checked={this.state.directions.includes('W')}
             />
 
             <Checkbox
               className='ds-checkbox'
               label='C'
               onChange={() => {
-                this.updateFilterState('C');
+                this.updateDirectionState('C');
               }}
-              checked={this.state.filters.includes('C')}
+              checked={this.state.directions.includes('C')}
             />
           </div>
           <div className='data-search'>

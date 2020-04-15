@@ -1,12 +1,27 @@
 import React from 'react';
 import Filters from './Filters';
 
-const ControlBox = ({ updateVehicleSelection, updateFiltersList }) => {
+const ControlBox = ({
+  updateVehicleSelection,
+  updateRoadTypesList,
+  updateRoadCatsList,
+  updateDirectionList,
+  vehicleSelection,
+  roadTypesList,
+  roadCatsList,
+  directions,
+}) => {
   return (
     <div className='controlbox'>
       <Filters
         updateVehicleSelection={updateVehicleSelection}
-        updateFiltersList={updateFiltersList}
+        updateRoadTypesList={updateRoadTypesList}
+        updateRoadCatsList={updateRoadCatsList}
+        updateDirectionList={updateDirectionList}
+        vehicleSelection={vehicleSelection}
+        roadTypesList={roadTypesList}
+        roadCatsList={roadCatsList}
+        directions={directions}
       />
     </div>
   );

@@ -50,28 +50,62 @@ class TimeSeriesViz extends Component {
       },
     ],
     vehicleSelection: ['all_motor_vehicles'],
-    filtersList: ['Minor'],
+    roadTypes: ['Major', 'Minor'],
+    roadCats: ['TM', 'MB', 'MCU', 'PA', 'TA'],
+    directions: ['N', 'S', 'E', 'W', 'C'],
   };
 
   updateVehicleSelection = (vehicles) => {
     this.setState({ vehicleSelection: vehicles });
-    this.getData(vehicles, this.state.filtersList);
+    this.getData(
+      vehicles,
+      this.state.roadTypes,
+      this.state.roadCats,
+      this.state.directions
+    );
   };
 
-  updateFiltersList = (filters) => {
-    this.setState({ filtersList: filters });
-    this.getData(this.state.vehicleSelection, filters);
+  updateRoadTypesList = (roadTypes) => {
+    this.setState({ roadTypes });
+    this.getData(
+      this.state.vehicleSelection,
+      roadTypes,
+      this.state.roadCats,
+      this.state.directions
+    );
+  };
+
+  updateRoadCatsList = (roadCats) => {
+    this.setState({ roadCats });
+    this.getData(
+      this.state.vehicleSelection,
+      this.state.roadTypes,
+      roadCats,
+      this.state.directions
+    );
+  };
+
+  updateDirectionList = (directions) => {
+    this.setState({ directions });
+    this.getData(
+      this.state.vehicleSelection,
+      this.state.roadTypes,
+      this.state.roadCats,
+      directions
+    );
   };
 
   // get all the data
   // TODO add ability to pass filters to backend
-  getData = (vehiclesList, filtersList) => {
+  getData = (vehiclesList, roadTypes, roadCats, directions) => {
     fetch('http://localhost:3001/timeseries', {
       method: 'post',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
         vehicles: vehiclesList,
-        filtersList: filtersList,
+        roadTypes,
+        roadCats,
+        directions,
       }),
     })
       .then((response) => response.json())
@@ -82,7 +116,12 @@ class TimeSeriesViz extends Component {
 
   // Set defaults in here
   componentDidMount() {
-    // this.getData([this.state.vehicleSelection]);
+    this.getData(
+      this.state.vehicleSelection,
+      this.state.roadTypes,
+      this.state.roadCats,
+      this.state.directions
+    );
   }
 
   render() {
@@ -91,8 +130,12 @@ class TimeSeriesViz extends Component {
         <ControlBox
           updateVehicleSelection={this.updateVehicleSelection}
           vehicleSelection={this.state.vehicleSelection}
-          updateFiltersList={this.updateFiltersList}
-          filtersList={this.state.filtersList}
+          updateRoadTypesList={this.updateRoadTypesList}
+          roadTypesList={this.state.roadTypesList}
+          updateRoadCatsList={this.updateRoadCatsList}
+          roadCatsList={this.state.roadCatsList}
+          updateDirectionList={this.updateDirectionList}
+          directions={this.state.directions}
         />
         <LineChart
           title={this.state.title}
