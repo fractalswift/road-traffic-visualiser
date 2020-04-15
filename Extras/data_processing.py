@@ -12,6 +12,7 @@ base_url = 'https://roadtraffic.dft.gov.uk/api/average-annual-daily-flow-by-dire
 level = 11
 
 
+# Function to get data from all pages (start and end are page numbers)
 def get_data(start, end):
 
     count = 0
@@ -27,8 +28,7 @@ def get_data(start, end):
     return all_pages_data
 
 
-# all_data = get_data(1,43)
-
+# Get the data from pages 1 - 42 (all the pages available)
 data = get_data(1, 43)
 
 # generate list of years (the years span many pages so we can just get top item on page
