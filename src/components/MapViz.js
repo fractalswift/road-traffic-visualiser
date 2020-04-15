@@ -168,11 +168,11 @@ class MapViz extends Component {
             <Grid.Column stretched width={12}>
               <Segment>
                 <div style={{ width: '100%' }}>
-                  <h2>Total vehicles</h2>
+                  <h2>Total vehicles by location</h2>
                   <DeckGL
                     style={{ position: 'relative' }}
-                    width={500}
-                    height={500}
+                    width={700}
+                    height={700}
                     initialViewState={initialViewState}
                     controller={true}
                     layers={layers}
