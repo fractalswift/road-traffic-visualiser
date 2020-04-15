@@ -31,12 +31,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  console.log('get received...');
-  res.json('Server here...');
-  console.log('reply sent');
-});
-
 //@ get all data (for timeseries)
 // TODO add filter options
 app.post('/timeseries', (req, res) => {
