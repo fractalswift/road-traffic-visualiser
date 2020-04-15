@@ -2,12 +2,12 @@
 
 ## **To run:**
 
--clone this repo
--go to repo and run "npm install"
--go to repo/roadviz-backend and run "npm install"
--start the servers for back end and front end:
--go to repo/roadviz-back end and run "npm start"
--go to main repo and run "npm start" in a different terminal tab!
+ - -clone this repo
+ - -go to repo and run "npm install"
+ - -go to repo/roadviz-backend and run "npm install"
+ - -start the servers for back end and front end:
+ - -go to repo/roadviz-back end and run "npm start"
+ - -go to main repo and run "npm start" in a different terminal tab!
 
 ## EXTRAS:
 
