@@ -171,8 +171,8 @@ class MapViz extends Component {
                   <h2>Total vehicles by location</h2>
                   <DeckGL
                     style={{ position: 'relative' }}
-                    width={700}
-                    height={700}
+                    width={800}
+                    height={900}
                     initialViewState={initialViewState}
                     controller={true}
                     layers={layers}

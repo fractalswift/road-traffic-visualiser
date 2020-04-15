@@ -16,8 +16,8 @@ This app runs on express/react but I used Python to get and clean the data, the 
 
 // Timeseries - add functionality to total/average selector - searchbox works, but it would be cool if it made suggestions as you typed
 
-// Year Breakdown: - consider switch to different chart type - changes in data from year to year aren't that big or obvious
+// Year Breakdown: - consider switch to different chart type - changes in data from year to year aren't that big or obvious. Add some filters/searches by road name.
 
-// Geospatial: - normalise data so it is easier to compare without zooming out
+// Geospatial: - normalise data so it is easier to compare without zooming out. Add some more filters for vehicle type etc
 
-// Raw: - add year selector to make the data load faster for slower machines
+// Raw - add year selector to make the data load faster for slower machines
