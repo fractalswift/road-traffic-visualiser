@@ -28,7 +28,7 @@ class TimeSeriesViz extends Component {
     ],
     datasets: [
       {
-        label: 'Loading...',
+        label: 'Please select vehicle type(s)...',
         fill: false,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
