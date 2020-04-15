@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Menu, Segment } from 'semantic-ui-react';
-import { Doughnut } from 'react-chartjs-2';
 
 import DeckGL from '@deck.gl/react';
 import { H3HexagonLayer } from '@deck.gl/geo-layers';

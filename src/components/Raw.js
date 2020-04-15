@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactJson from 'react-json-view';
 
-// TODO - this is a little heavy, may be better to give it an option for
+// TODO - this is a  a lot of data, may be better to give it an option for
 // exploring by year to avoid fetching all data at once
 // (have begun this below)
 
